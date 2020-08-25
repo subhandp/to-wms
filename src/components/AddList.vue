@@ -1,5 +1,6 @@
 <template>
 <div class="flex-col  h-full p-4 shadow-outline">
+      <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Awesome Image added here</h1>
       <div class="flex  w-full h-auto p-2 mt-4 " >
                    
                     <div class="flex flex-wrap -mx-2 ">
