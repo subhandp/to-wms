@@ -1,8 +1,8 @@
 <template>
   <div id="app">
    
-   <div class="w-1/4 h-full "></div>
-        <div class="flex-col w-1/2 h-full p-4 shadow-outline">
+  <div class="w-2/6 p-2 ">
+    <div class="flex-col  h-full p-4 shadow-outline">
             <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Awesome Grid Image</h1>
             <svg class="animate-bounce w-6 h-6 text-blue-600 " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -18,8 +18,9 @@
             <template>
                 <div class="flex  w-full h-auto p-2 mt-4 " >
                    
-                    <div class="flex flex-wrap -mx-2">
-                        <div v-bind:key="image.id" v-for="image in imageList" class="w-1/3 sm:px-2">
+                    <div class="flex flex-wrap -mx-2 ">
+                        
+                        <div v-bind:key="image.id" v-for="image in imageList" class="w-1/3 sm:px-2 w-">
 
                             <div class="max-w-sm rounded overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
                                 <img class="w-full" :src="image.thumbnailUrl"  alt="image empty">
@@ -27,6 +28,7 @@
                                   <p class="sm:block  text-base text-center ">
                                     {{image.title}}
                                   </p>
+                                  <button @click="addToList(image)" style="color: red">click me for add to list</button>
                                 </div>
 
                               </div><br>
@@ -38,15 +40,27 @@
             </template>
 
         </div>
-   
+  </div>
+  <div class="w-2/6 p-2">
+    <AddList  v-bind:addListImage="addListImage"/>
+  </div>
+  <div class="w-2/6 p-2">
+    <div class="text-gray-700 text-center bg-gray-400 p-2">3</div>
+  </div>
+
     <!-- e nd div app -->
   </div>
 </template>
 
 <script>
 
+import AddList from './components/AddList';
+
 export default {
   name: 'App',
+  components:{
+    AddList
+  },
      computed: {
             processFeedback: function() {
                 if (!this.searching && this.imageList.length <= 0) {
@@ -77,6 +91,16 @@ export default {
 
         },
         methods: {
+          addToList: function(val){
+             this.addListImage.push(val);
+
+             this.imageList = this.imageList.filter(({id})=>{
+               return !this.addListImage.some(x=>x.id == id)
+             })
+
+
+            console.log(this.imageList);
+          },
             minSearching: function() {
                 if (this.search.length != 0 && this.search.length < 3) {
                     return false
@@ -100,6 +124,8 @@ export default {
     return {
        search: "",
        searching: false,
+       addListImage:[],
+       notInTheList: [],
       resources: [{
         "albumId": 1,
         "id": 1,
