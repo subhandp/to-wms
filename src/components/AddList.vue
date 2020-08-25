@@ -34,7 +34,7 @@ export default {
           const newAddList =  this.addListImage.filter((data)=>{
                return data.id != val.id;
            })
-            this.$emit('delete-image', newAddList);
+            this.$emit('delete-image', newAddList,val);
        }
    }
 }   

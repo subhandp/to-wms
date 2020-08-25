@@ -90,23 +90,24 @@ export default {
                     this.searching = false;
                     this.imageList = this.resources;
                 }
-            },
-            addListImage:function(){
-              this.imageList = this.imageList.filter(({id})=>{
-               return !this.addListImage.some(x=>x.id == id)
-             })
-             this.resources = this.imageList;
             }
 
         },
         methods: {
-          deleteImageFromAddList(data){
-            this.addListImage = data;
-
+          deleteImageFromAddList(newAddList, deletedData){
+            this.imageList.push(deletedData);
+            this.addListImage = newAddList;
+            this.refreshImageData();
           },
-
+          refreshImageData(){
+            this.imageList = this.imageList.filter(({id})=>{
+               return !this.addListImage.some(x=>x.id == id)
+             })
+             this.resources = this.imageList;
+          },
           addToList: function(val){
              this.addListImage.push(val);
+             this.refreshImageData();
           },
             minSearching: function() {
                 if (this.search.length != 0 && this.search.length < 3) {
