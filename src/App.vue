@@ -4,6 +4,7 @@
   <div class="w-3/6 p-2 ">
     <div class="flex-col  h-full p-4 shadow-outline">
             <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Awesome Grid Image</h1>
+            <h1 class="text-center">{{countList}}</h1>
             <svg class="animate-bounce w-6 h-6 text-blue-600 " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
               </svg>
@@ -42,7 +43,7 @@
         </div>
   </div>
   <div class="w-3/6 p-2">
-      <h1>{{countList}}</h1>
+      
     <AddList  v-on:delete-image="deleteImageFromAddList"  v-bind:addListImage="addListImage"/>
   </div>
 
@@ -77,7 +78,6 @@ export default {
             }
         },
         watch: {
-            //coment kode dibawah jika menggunakan method untuk pencarian
             search: async function() {
                 if (this.minSearching()) {
                     this.searching = true;
@@ -90,25 +90,23 @@ export default {
                     this.searching = false;
                     this.imageList = this.resources;
                 }
+            },
+            addListImage:function(){
+              this.imageList = this.imageList.filter(({id})=>{
+               return !this.addListImage.some(x=>x.id == id)
+             })
+             this.resources = this.imageList;
             }
 
         },
         methods: {
           deleteImageFromAddList(data){
             this.addListImage = data;
-          //  this.imageList = this.imageList.filter(({id})=>{
-          //      return this.addListImage.some(x=>x.id == id)
-          //    })
+
           },
 
-          refreshImageListData(){
-            this.imageList = this.imageList.filter(({id})=>{
-               return !this.addListImage.some(x=>x.id == id)
-             })
-          },
           addToList: function(val){
              this.addListImage.push(val);
-              this.refreshImageListData();
           },
             minSearching: function() {
                 if (this.search.length != 0 && this.search.length < 3) {
