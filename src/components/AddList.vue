@@ -31,11 +31,10 @@ export default {
   ],
    methods:{
        removeFromList: function(val){
-          this.addListImage =  this.addListImage.filter((data)=>{
+          const newAddList =  this.addListImage.filter((data)=>{
                return data.id != val.id;
            })
-            this.$emit('delete-image', this.addListImage);
-           console.log(this.addListImage);
+            this.$emit('delete-image', newAddList);
        }
    }
 }   

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-   
-  <div class="w-2/6 p-2 ">
+   <div class="flex flex-wrap">
+  <div class="w-3/6 p-2 ">
     <div class="flex-col  h-full p-4 shadow-outline">
             <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Awesome Grid Image</h1>
             <svg class="animate-bounce w-6 h-6 text-blue-600 " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,14 +41,14 @@
 
         </div>
   </div>
-  <div class="w-2/6 p-2">
+  <div class="w-3/6 p-2">
+      <h1>{{countList}}</h1>
     <AddList  v-on:delete-image="deleteImageFromAddList"  v-bind:addListImage="addListImage"/>
   </div>
-  <div class="w-2/6 p-2">
-    <div class="text-gray-700 text-center bg-gray-400 p-2">3</div>
-  </div>
+
 
     <!-- e nd div app -->
+  </div>
   </div>
 </template>
 
@@ -94,9 +94,11 @@ export default {
 
         },
         methods: {
-          deleteImageFromAddList:function(data){
+          deleteImageFromAddList(data){
             this.addListImage = data;
-            this.refreshImageListData();
+          //  this.imageList = this.imageList.filter(({id})=>{
+          //      return this.addListImage.some(x=>x.id == id)
+          //    })
           },
 
           refreshImageListData(){
@@ -107,8 +109,6 @@ export default {
           addToList: function(val){
              this.addListImage.push(val);
               this.refreshImageListData();
-
-            console.log(this.imageList);
           },
             minSearching: function() {
                 if (this.search.length != 0 && this.search.length < 3) {
@@ -134,7 +134,6 @@ export default {
        search: "",
        searching: false,
        addListImage:[],
-       notInTheList: [],
       resources: [{
         "albumId": 1,
         "id": 1,
