@@ -12,7 +12,7 @@
                                   <p class="sm:block  text-base text-center ">
                                     {{image.title}}
                                   </p>
-                                 
+                                     <button @click="removeFromList(image)" style="color: red">click me for remove from list</button>
                                 </div>
 
                               </div><br>
@@ -29,26 +29,16 @@ export default {
   props: [
     "addListImage"
   ],
-   data(){
-    return {
-
-      imageList: [{
-        "albumId": 1,
-        "id": 1,
-        "title": "accusamus beatae ad facilis cum similique qui sunt",
-        "url": "https://via.placeholder.com/600/92c952",
-        "thumbnailUrl": "https://via.placeholder.com/150/92c952"
-    },
-    {
-        "albumId": 1,
-        "id": 2,
-        "title": "reprehenderit est deserunt velit ipsam",
-        "url": "https://via.placeholder.com/600/771796",
-        "thumbnailUrl": "https://via.placeholder.com/150/771796"
-    }]
-}
+   methods:{
+       removeFromList: function(val){
+          this.addListImage =  this.addListImage.filter((data)=>{
+               return data.id != val.id;
+           })
+            this.$emit('delete-image', this.addListImage);
+           console.log(this.addListImage);
+       }
    }
-}
+}   
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

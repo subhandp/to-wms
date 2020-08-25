@@ -28,7 +28,7 @@
                                   <p class="sm:block  text-base text-center ">
                                     {{image.title}}
                                   </p>
-                                  <button @click="addToList(image)" style="color: red">click me for add to list</button>
+                                  <button @click="addToList(image)" style="color: green">click me for add to list</button>
                                 </div>
 
                               </div><br>
@@ -42,7 +42,7 @@
         </div>
   </div>
   <div class="w-2/6 p-2">
-    <AddList  v-bind:addListImage="addListImage"/>
+    <AddList  v-on:delete-image="deleteImageFromAddList"  v-bind:addListImage="addListImage"/>
   </div>
   <div class="w-2/6 p-2">
     <div class="text-gray-700 text-center bg-gray-400 p-2">3</div>
@@ -62,6 +62,9 @@ export default {
     AddList
   },
      computed: {
+            countList:function(){
+              return "Total List Image: " + this.imageList.length + ', Total Add List Image: ' + this.addListImage.length;
+            },
             processFeedback: function() {
                 if (!this.searching && this.imageList.length <= 0) {
                     return "Sorry, Your image not found.";
@@ -91,13 +94,19 @@ export default {
 
         },
         methods: {
-          addToList: function(val){
-             this.addListImage.push(val);
+          deleteImageFromAddList:function(data){
+            this.addListImage = data;
+            this.refreshImageListData();
+          },
 
-             this.imageList = this.imageList.filter(({id})=>{
+          refreshImageListData(){
+            this.imageList = this.imageList.filter(({id})=>{
                return !this.addListImage.some(x=>x.id == id)
              })
-
+          },
+          addToList: function(val){
+             this.addListImage.push(val);
+              this.refreshImageListData();
 
             console.log(this.imageList);
           },
