@@ -10,11 +10,32 @@
                                   <p class="sm:block  text-base text-center ">
                                     {{image.title}}
                                   </p>
+
                                     <div v-if="comp == 'addlist'">
-                                        <button @click="removeFromList(image)" style="color: red">click me for remove from list</button>
+
+                                      <div class="inline-flex">
+                                              <div class="bg-gray-300  text-gray-800 font-bold py-2 px-4 rounded-l">
+                                              {{image.price | IDR}}
+                                              </div>
+                                              <button @click="removeFromList(image)"  class="bg-red-500 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                                              Remove from Cart
+                                              </button>
+                                          </div>
+
                                     </div>
                                     <div v-else-if="comp == 'list'">
-                                        <button @click="addToList(image)" style="color: green">click me for add to list</button>
+
+
+                                        <div class="inline-flex">
+                                              <div class="bg-gray-300  text-gray-800 font-bold py-2 px-4 rounded-l">
+                                              {{image.price | IDR}}
+                                              </div>
+                                              <button @click="addToList(image)"  class="bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r">
+                                              Add to Cart
+                                              </button>
+                                          </div>
+
+
                                     </div>
                                      
                                 </div>

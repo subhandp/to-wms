@@ -7,7 +7,7 @@
             v-model="search"
             v-on:keyup="searchingKeyUp"
             class="text-2xl w-full  mr-3 py-1 px-2 leading-tight outline-none hover:bg-blue-100"
-            placeholder="Image search here"
+            placeholder="Search Here product here"
         />
             </div>
 
