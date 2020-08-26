@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="flex-col  h-full p-4 shadow-outline">
-            <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Awesome Grid Image</h1>
+            <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Shope.com</h1>
             
             
             <SearchBox v-on:searching="searchingList" > </SearchBox>

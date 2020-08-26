@@ -17,7 +17,7 @@
                                               <div class="bg-gray-300  text-gray-800 font-bold py-2 px-4 rounded-l">
                                               {{image.price | IDR}}
                                               </div>
-                                              <button @click="removeFromList(image)"  class="bg-red-500 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                                              <button @click="removeFromList(image)"  class="bg-red-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r">
                                               Remove from Cart
                                               </button>
                                           </div>
