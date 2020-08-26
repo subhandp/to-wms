@@ -1,130 +1,111 @@
 <template>
   <div id="app">
-    <div class="container mx-auto" style="max-width:1080px">
-            <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Shope.com</h1>
-            
-            
-            <SearchBox v-on:searching="searchingList" > </SearchBox>
-            
-            <div class="text-lg ">{{processFeedback}}</div>
 
-            <template>
-                <div class="w-full h-auto p-2 mt-4 " >
-                    <svg class="animate-bounce w-6 h-6 text-blue-600 " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
+<html lang="en">
+	<head>
 
-                    <AddList  v-on:delete-image="deleteImageFromAddList"  :data="addListImage" comp="addlist"> Your Shoping Cart  List</Addlist>
-                    
-                    <br>    
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-                    <AddList  v-on:add-image="addToList" :data="imageList" comp="list"> All list product </Addlist>
+	
 
-                </div>
+		<title>Blog</title>
 
-                        <notifications />
+	</head>
+	<body>
 
-            </template>
+		<!-- header -->
+		<LayoutHeader></LayoutHeader>
+		<!-- /header -->
 
-        </div>
-  
+		<!-- nav -->
+	<LayoutNavbar></LayoutNavbar>
+		<!-- /nav -->
 
-      
+		<!-- blog -->
+		<div class="w-full bg-white">
 
-  
+			<!-- title -->
+			<div class="text-center px-6 py-12 mb-6 bg-gray-100 border-b">
+				<h1 class=" text-xl md:text-4xl pb-4" >{{title}}</h1>
+				<p class="leading-loose text-gray-dark">
+					Catch up on the latest news and updates.
+				</p>
+			</div>
+			<!-- /title -->
+
+			<div class="container max-w-4xl mx-auto md:flex items-start py-8 px-12 md:px-0">
+
+				<!-- articles -->
+				<div class="w-full md:pr-12 mb-12">
+					
+
+					<!-- <router-view></router-view> -->
+         <Page></Page>
+
+					<div class="flex justify-between text-xs">
+						<a href="#" class="bg-gray text-white no-underline py-2 px-3 rounded">Previous</a>
+						<a href="#" class="bg-black text-white no-underline py-2 px-3 rounded">Next</a>
+					</div>
+				</div>
+				<!--/ articles -->
+
+				<!-- sidebar -->
+				<LayoutSidebar></LayoutSidebar>
+				<!-- /sidebar -->
+
+			</div>
+
+		</div>
+		<!-- /blog -->
 
 
-    <!-- e nd div app -->
+		<!-- footer -->
+  <LayoutFooter></LayoutFooter>
+		<!-- /footer -->
+
+
+	</body>
+</html>
+
   </div>
 </template>
 
 <script>
 
-import AddList from './components/AddList';
-import SearchBox from './components/SearchBox';
-import data from "./assets/data.js";
+import LayoutFooter from './views/layouts/LayoutFooter'
+import LayoutHeader from './views/layouts/LayoutHeader'
+import LayoutNavbar from './views/layouts/LayoutNavbar'
+import LayoutSidebar from './views/layouts/LayoutSidebar'
+import Page from './views/Page'
+// import Albums from './assets/data/albums'
+// import Photos from './assets/data/photos'
+// import Posts from './assets/data/posts'
+
+
 
 export default {
   name: 'App',
   components:{
-    AddList,
-    SearchBox
+    LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar,Page
   },
      computed: {
-            countList:function(){
-              return "Total List Image: " + this.imageList.length + ', Total Add List Image: ' + this.addListImage.length;
-            },
-            processFeedback: function() {
-                if(!this.searching && this.search.length < 3 && this.search.length != 0){
-                     return "Sorry, minimal 3 character for searching";
-                }
-                else if (!this.searching && this.imageList.length <= 0) {
-                    console.log('notfound')
-                    return "Sorry, Your image not found.";
-                } else if (this.searching) {
-                    console.log('found')
-                    return "Searching, wait for second...";
-                }
-                else{
-                  return "";
-                }
-            }
+   
         },
         watch: {
-            search: async function() {
-                  if(this.search.length < 3){
-                       this.searching = false;
-                      this.imageList = this.resources;
-                  }
-                  else{
-                      this.searching = true;
-                        await this.waitingForSearch(1000);
-                        this.imageList = this.resources.filter((data) =>
-                            data.title.startsWith(this.search)
-                        );
-                        this.searching = false;
-                  }
-                    
-
-            }
 
         },
         methods: {
-            searchingList: function(val){
-                this.search = val;
-            },
-          deleteImageFromAddList(newAddList, deletedData){
-            this.imageList.push(deletedData);
-            this.addListImage = newAddList;
-            this.refreshImageData();
-             this.$notify( 'Remove item from cart');
-          },
-          refreshImageData(){
-            this.imageList = this.resources .filter(({id})=>{
-               return !this.addListImage.some(x=>x.id == id)
-             })
-             this.resources = this.imageList;
-          },
-          addToList: function(val){
-             this.addListImage.push(val);
-             this.refreshImageData();
-             this.$notify( 'added item to cart');
-          },
-            waitingForSearch: function(time) {
-                return new Promise((resolve) => setTimeout(resolve, time));
-
-            },
+        //   setTitle(pageTitle){
+        //     this.title = pageTitle
+        //   }
         },
          created() {
-            this.imageList = this.resources;
         },
   data(){
-    return {
-       search: "",
-       searching: false,
-       addListImage:[],
-      resources: data
-      // akhir return
+    return{
+      title : 'Dashboard'
     }
   }
 }
