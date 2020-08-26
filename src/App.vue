@@ -1,75 +1,66 @@
 <template>
   <div id="app">
-   <div class="flex flex-wrap">
-  <div class="w-3/6 p-2 ">
     <div class="flex-col  h-full p-4 shadow-outline">
             <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Awesome Grid Image</h1>
             <h1 class="text-center">{{countList}}</h1>
             <svg class="animate-bounce w-6 h-6 text-blue-600 " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
               </svg>
-            <div class="flex items-center border-b-2 py-2">
-                <input class=" text-2xl w-full  mr-3 py-1 px-2 leading-tight outline-none hover:bg-blue-100  " type="text" placeholder="Image search here" v-model="search">
-            </div>
-            <div v-if="!minSearching()">
-                <h2 class="w-full text-center text-red-600 text-lg italic">Sorry, minimal 3 character for searching</h2>
-            </div>
 
+            <SearchBox v-on:searching="searchingList" > </SearchBox>
+            
             <div class="text-lg ">{{processFeedback}}</div>
+
             <template>
-                <div class="flex  w-full h-auto p-2 mt-4 " >
-                   
-                    <div class="flex flex-wrap -mx-2 ">
-                        
-                        <div v-bind:key="image.id" v-for="image in imageList" class="w-1/3 sm:px-2 w-">
+                <div class="w-full h-auto p-2 mt-4 " >
+                    
+                    <AddList  v-on:delete-image="deleteImageFromAddList"  :data="addListImage" comp="addlist"> Awesome Image added here </Addlist>
+                    
+                    <br>    
 
-                            <div class="max-w-sm rounded overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                                <img class="w-full" :src="image.thumbnailUrl"  alt="image empty">
-                                <div class="px-6 py-4">
-                                  <p class="sm:block  text-base text-center ">
-                                    {{image.title}}
-                                  </p>
-                                  <button @click="addToList(image)" style="color: green">click me for add to list</button>
-                                </div>
+                    <AddList  v-on:add-image="addToList" :data="imageList" comp="list"> Awesome Image </Addlist>
 
-                              </div><br>
-
-                        </div>
-                    </div>
                 </div>
 
             </template>
 
         </div>
-  </div>
-  <div class="w-3/6 p-2">
+  
+
       
-    <AddList  v-on:delete-image="deleteImageFromAddList"  v-bind:addListImage="addListImage"/>
-  </div>
+
+  
 
 
     <!-- e nd div app -->
-  </div>
   </div>
 </template>
 
 <script>
 
 import AddList from './components/AddList';
+import SearchBox from './components/SearchBox';
+
 
 export default {
   name: 'App',
   components:{
-    AddList
+    AddList,
+    SearchBox
   },
      computed: {
             countList:function(){
               return "Total List Image: " + this.imageList.length + ', Total Add List Image: ' + this.addListImage.length;
             },
             processFeedback: function() {
-                if (!this.searching && this.imageList.length <= 0) {
+                if(!this.searching && this.search.length < 3 && this.search.length != 0){
+                     return "Sorry, minimal 3 character for searching";
+                }
+                else if (!this.searching && this.imageList.length <= 0) {
+                    console.log('notfound')
                     return "Sorry, Your image not found.";
                 } else if (this.searching) {
+                    console.log('found')
                     return "Searching, wait for second...";
                 }
                 else{
@@ -79,21 +70,27 @@ export default {
         },
         watch: {
             search: async function() {
-                if (this.minSearching()) {
-                    this.searching = true;
-                    await this.waitingForSearch(1000);
-                    this.imageList = this.resources.filter((data) =>
-                        data.title.startsWith(this.search)
-                    );
-                    this.searching = false;
-                } else {
-                    this.searching = false;
-                    this.imageList = this.resources;
-                }
+                  if(this.search.length < 3){
+                       this.searching = false;
+                      this.imageList = this.resources;
+                  }
+                  else{
+                      this.searching = true;
+                        await this.waitingForSearch(1000);
+                        this.imageList = this.resources.filter((data) =>
+                            data.title.startsWith(this.search)
+                        );
+                        this.searching = false;
+                  }
+                    
+
             }
 
         },
         methods: {
+            searchingList: function(val){
+                this.search = val;
+            },
           deleteImageFromAddList(newAddList, deletedData){
             this.imageList.push(deletedData);
             this.addListImage = newAddList;
@@ -106,27 +103,17 @@ export default {
              this.resources = this.imageList;
           },
           addToList: function(val){
+              console.log(val);
              this.addListImage.push(val);
              this.refreshImageData();
           },
-            minSearching: function() {
-                if (this.search.length != 0 && this.search.length < 3) {
-                    return false
-                } else {
-                    return true;
-                }
-            },
-            
             waitingForSearch: function(time) {
                 return new Promise((resolve) => setTimeout(resolve, time));
 
             },
         },
          created() {
-            //coment kode dibawah jika menggunakan method untuk pencarian
             this.imageList = this.resources;
-            //uncoment kode dibawah jika menggunakan method untuk pencarian
-            // this.minSearching();
         },
   data(){
     return {
