@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="flex-col  h-full p-4 shadow-outline">
+    <div class="container mx-auto" style="max-width:1080px">
             <h1 class="flex-1  text-center text-5xl  text-blue-600 ">Shope.com</h1>
             
             
