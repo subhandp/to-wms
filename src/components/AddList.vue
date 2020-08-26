@@ -1,6 +1,6 @@
 <template>
 <div>
-                   <h1><slot></slot></h1>
+                   <h1 class="text-center bg-indigo-300"><slot></slot></h1>
                     <div class="flex flex-wrap -mx-2 ">
                         
                         <div v-bind:key="image.id" v-for="image in data" class="w-1/4 sm:px-2 w-">

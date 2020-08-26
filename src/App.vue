@@ -100,13 +100,12 @@ export default {
              this.$notify( 'Remove item from cart');
           },
           refreshImageData(){
-            this.imageList = this.imageList.filter(({id})=>{
+            this.imageList = this.resources .filter(({id})=>{
                return !this.addListImage.some(x=>x.id == id)
              })
              this.resources = this.imageList;
           },
           addToList: function(val){
-              console.log(val);
              this.addListImage.push(val);
              this.refreshImageData();
              this.$notify( 'added item to cart');
