@@ -28,6 +28,7 @@
                           <br>
 
                         </div>
+                        <Paginate :data="resource" url="albums/page" :pageSize="pageSize"></Paginate>
                     </div>
                     
   </div>
@@ -36,13 +37,19 @@
 <script>
 
 import Albums from '../assets/data/albums'
+import Paginate from '../components/Paginate'
 
 export default {
   name: 'Album',
+  components:{
+	Paginate
+  },
   data  () {
       return {
-          albums : Albums,
-          image: "https://via.placeholder.com/600/771796" 	  
+          resource: Albums,
+          albums : this.getData(Albums,5, this.$route.params.id),
+          image: "https://via.placeholder.com/600/771796",
+          pageSize: 5	 	  
       }
   },
    methods:{

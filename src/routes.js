@@ -19,8 +19,24 @@ const routes = [
             component: Posts
         }]
     },
-    { path: "/photos", component: Photos },
-    { path: "/albums", component: Album }
+    {
+        path: "/photos",
+        component: Photos,
+        name: "photosindex",
+        children: [{
+            path: "/photos/page/:id",
+            component: Photos
+        }]
+    },
+    {
+        path: "/albums",
+        component: Album,
+        name: "albumsindex",
+        children: [{
+            path: "/albums/page/:id",
+            component: Album
+        }]
+    }
     // {
     //   path: "/user",
     //   component: UserIndex,
