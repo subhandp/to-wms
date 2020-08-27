@@ -7,11 +7,6 @@
 		</a>
 		</h2>
 
-		<div class="mb-4 text-sm text-gray-700">
-			by <a href="#" class="text-gray-700">Joe Bloggs</a> on 19th March 2019
-
-		</div>
-
 		<p class="text-gray-700 leading-normal">
 		{{post.body | readmore}}
 		</p>
@@ -27,18 +22,30 @@
 </template>
 
 <script>
+
 import  PostsData from '../assets/data/posts'
 export default {
   name: "Page",
   data(){
 	return {
-		Posts : PostsData,
-		PageTitle: "Welcome to my Post Data" 	   
+		Posts : this.getData(),
+		PageTitle: "Welcome to my Post Data" ,
     }
   },
   methods:{
+	paginate(array, page_size, page_number){
+		return array.slice((page_number - 1) * page_size, page_number * page_size);
+	},
+getData: function (){
+	const PostsDataTotal =  PostsData.length
 
-  },
+		const listNumberData = Array.from(Array(PostsDataTotal).keys(), n => n + 1)
+		const pageNumber = this.$route.params.id ? this.$route.params.id : 1;
+		const paginate = this.paginate(listNumberData, 5, pageNumber);
+		const result = PostsData.slice(paginate[0]-1,paginate.pop());
+		return result;
+}
+},
   created(){
 	this.$emit('open-page',this.PageTitle)
   }

@@ -15,12 +15,6 @@
 
 <script>
 export default {
-  name: "LayoutHeader",
-  data(){
-
-  },
-  methods:{
-
-  }
+  name: "LayoutHeader"
 };
 </script>

@@ -41,8 +41,8 @@
 				<div class="w-full md:pr-12 mb-12">
 					
 
-					<!-- <router-view></router-view> -->
-         <Page></Page>
+					<router-view></router-view>
+         <!-- <Page></Page> -->
 
 					<div class="flex justify-between text-xs">
 						<a href="#" class="bg-gray text-white no-underline py-2 px-3 rounded">Previous</a>
@@ -78,7 +78,7 @@ import LayoutFooter from './views/layouts/LayoutFooter'
 import LayoutHeader from './views/layouts/LayoutHeader'
 import LayoutNavbar from './views/layouts/LayoutNavbar'
 import LayoutSidebar from './views/layouts/LayoutSidebar'
-import Page from './views/Page'
+// import Page from './views/Page'
 // import Albums from './assets/data/albums'
 // import Photos from './assets/data/photos'
 // import Posts from './assets/data/posts'
@@ -88,7 +88,7 @@ import Page from './views/Page'
 export default {
   name: 'App',
   components:{
-    LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar,Page
+    LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar
   },
      computed: {
    
