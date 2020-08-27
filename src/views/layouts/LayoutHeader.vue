@@ -18,3 +18,14 @@ export default {
   name: "LayoutHeader"
 };
 </script>
+
+<style>
+
+a:hover {
+  @apply  text-red-600;
+}
+
+ a.router-link-active {
+  @apply text-red-600;
+}
+</style>
