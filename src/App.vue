@@ -30,7 +30,7 @@
 			<div class="text-center px-6 py-12 mb-6 bg-gray-100 border-b">
 				<h1 class=" text-xl md:text-4xl pb-4" >{{title}}</h1>
 				<p class="leading-loose text-gray-dark">
-					Catch up on the latest news and updates.
+					Blog
 				</p>
 			</div>
 			<!-- /title -->
@@ -44,10 +44,7 @@
 					<router-view></router-view>
          <!-- <Page></Page> -->
 
-					<div class="flex justify-between text-xs">
-						<a href="#" class="bg-gray text-white no-underline py-2 px-3 rounded">Previous</a>
-						<a href="#" class="bg-black text-white no-underline py-2 px-3 rounded">Next</a>
-					</div>
+		
 				</div>
 				<!--/ articles -->
 

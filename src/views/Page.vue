@@ -16,7 +16,9 @@
 					</div>
 		<br>
 	</div>
+	<Paginate :data="resource" url="posts/page" :pageSize="pageSize"></Paginate>
 </article>
+
 
 
 </template>
@@ -24,30 +26,23 @@
 <script>
 
 import  PostsData from '../assets/data/posts'
+import Paginate from '../components/Paginate'
 export default {
   name: "Page",
+  components:{
+	Paginate
+  },
   data(){
 	return {
-		Posts : this.getData(),
+		resource: PostsData,
+		Posts : this.getData(PostsData,5, this.$route.params.id),
 		PageTitle: "Welcome to my Post Data" ,
+		pageSize: 5
     }
   },
-  methods:{
-	paginate(array, page_size, page_number){
-		return array.slice((page_number - 1) * page_size, page_number * page_size);
-	},
-getData: function (){
-	const PostsDataTotal =  PostsData.length
-
-		const listNumberData = Array.from(Array(PostsDataTotal).keys(), n => n + 1)
-		const pageNumber = this.$route.params.id ? this.$route.params.id : 1;
-		const paginate = this.paginate(listNumberData, 5, pageNumber);
-		const result = PostsData.slice(paginate[0]-1,paginate.pop());
-		return result;
-}
-},
   created(){
 	this.$emit('open-page',this.PageTitle)
+	
   }
 };
 </script>

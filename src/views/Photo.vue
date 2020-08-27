@@ -18,21 +18,26 @@
                           <br>
 
                         </div>
+                       
                     </div>
-                    
+                     <Paginate :data="resource" url="photos/page" :pageSize="pageSize"></Paginate>
   </div>
 </template>
 
 <script>
-
 import Photos from '../assets/data/albums'
-
+import Paginate from '../components/Paginate'
 export default {
   name: 'Photo',
+    components:{
+	Paginate
+  },
   data  () {
       return {
-          photos : Photos,
-          image: "https://via.placeholder.com/150/197d29" 	  
+         resource: Photos,
+          photos :  this.getData(Photos,5, this.$route.params.id),
+          image: "https://via.placeholder.com/150/197d29" ,
+          pageSize: 5	  
       }
   },
    methods:{
