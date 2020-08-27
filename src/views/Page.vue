@@ -24,7 +24,7 @@
 </template>
 
 <script>
-
+// menggunakan mixins untuk paginate
 import  PostsData from '../assets/data/posts'
 import Paginate from '../components/Paginate'
 export default {
@@ -35,9 +35,9 @@ export default {
   data(){
 	return {
 		resource: PostsData,
-		Posts : this.getData(PostsData,7, this.$route.params.id),
+		Posts : this.getData(PostsData,5, this.$route.params.id),
 		PageTitle: "Welcome to my Post Data" ,
-		pageSize: 7
+		pageSize: 5
     }
   },
   created(){

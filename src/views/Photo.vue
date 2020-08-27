@@ -25,6 +25,7 @@
 </template>
 
 <script>
+// menggunakan mixins untuk paginate
 import Photos from '../assets/data/albums'
 import Paginate from '../components/Paginate'
 export default {

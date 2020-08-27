@@ -35,7 +35,7 @@
 </template>
 
 <script>
-
+// menggunakan mixins untuk paginate
 import Albums from '../assets/data/albums'
 import Paginate from '../components/Paginate'
 

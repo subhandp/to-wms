@@ -7,62 +7,37 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	
-
 		<title>Blog</title>
-
 	</head>
 	<body>
 
-		<!-- header -->
 		<LayoutHeader></LayoutHeader>
-		<!-- /header -->
-
-		<!-- nav -->
-	<LayoutNavbar></LayoutNavbar>
-		<!-- /nav -->
-
-		<!-- blog -->
+		
+		<LayoutNavbar></LayoutNavbar>
+	
 		<div class="w-full bg-white">
-
-			<!-- title -->
-			<div class="text-center px-6 py-12 mb-6 bg-gray-100 border-b">
-				<h1 class=" text-xl md:text-4xl pb-4" >{{title}}</h1>
+			<div class="text-center px-6 py-12 mb-6 bg-blue-100 border-b">
+				<h1 class=" text-xl md:text-4xl pb-4 " >{{title}}</h1>
 				<p class="leading-loose text-gray-dark">
 					Blog
 				</p>
 			</div>
-			<!-- /title -->
+
 
 			<div class="container max-w-4xl mx-auto md:flex items-start py-8 px-12 md:px-0">
-
-				<!-- articles -->
 				<div class="w-full md:pr-12 mb-12">
 					
-
 					<router-view></router-view>
-         <!-- <Page></Page> -->
-
 		
 				</div>
-				<!--/ articles -->
-
-				<!-- sidebar -->
+		
 				<LayoutSidebar></LayoutSidebar>
-				<!-- /sidebar -->
 
 			</div>
-
 		</div>
-		<!-- /blog -->
 
-
-		<!-- footer -->
   <LayoutFooter></LayoutFooter>
-		<!-- /footer -->
-
-
+	
 	</body>
 </html>
 
