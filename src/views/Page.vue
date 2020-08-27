@@ -35,9 +35,9 @@ export default {
   data(){
 	return {
 		resource: PostsData,
-		Posts : this.getData(PostsData,5, this.$route.params.id),
+		Posts : this.getData(PostsData,7, this.$route.params.id),
 		PageTitle: "Welcome to my Post Data" ,
-		pageSize: 5
+		pageSize: 7
     }
   },
   created(){

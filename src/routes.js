@@ -37,23 +37,7 @@ const routes = [
             component: Album
         }]
     }
-    // {
-    //   path: "/user",
-    //   component: UserIndex,
-    //   name: "userIndex",
-    //   children: [
-    //     {
-    //       path: "",
-    //       component: UserList,
-    //     },
-    //     {
-    //       path: "detail/:id",
-    //       component: UserDetail,
-    //       name: "userDetail",
-    //     },
-    //   ],
-    // },
-    //   { path: "/user/:id", component: UserDetail },
+
 ];
 
 export default routes;
