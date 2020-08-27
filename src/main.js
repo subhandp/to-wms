@@ -23,17 +23,39 @@ Vue.mixin({
             const listNumberData = Array.from(Array(PostsDataTotal).keys(), n => n + 1)
             const paginate = this.paginate(listNumberData, pageSize, pageNumber);
             return data.slice(paginate[0] - 1, paginate.pop());
+        },
+        getDataById(data, id) {
+            return data.filter((obj) => obj.id == id);
         }
+    }
+});
+
+
+const auth = {
+    userlogin: false,
+};
+
+const router = new VueRouter({
+    routes,
+    mode: "history",
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (auth.login) {
+            next();
+        } else {
+            alert("sorry, you have Login first");
+            next("/dashboard");
+        }
+    } else {
+        next();
     }
 });
 
 
 
 
-const router = new VueRouter({
-    routes,
-    mode: "history",
-});
 
 new Vue({
     router,

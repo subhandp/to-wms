@@ -11,12 +11,13 @@
 		{{post.body | readmore}}
 		</p>
 				<div class="flex justify-between text-xs">
-						<a href="#" class="bg-black text-white no-underline py-2 px-3 rounded">Readmore..</a>
-						
+						<router-link class="bg-black text-white no-underline py-2 px-3 rounded" :to="{ name: 'postdetail', params: {id: post.id}}" > Readmore..</router-link>
 					</div>
 		<br>
+		
 	</div>
-	<Paginate :data="resource" url="posts/page" :pageSize="pageSize"></Paginate>
+	<!-- <router-view :data="resource" url="posts/page" :pageSize="pageSize"></router-view> -->
+	<Paginate :data="resource" url="postspage" :pageSize="pageSize" ></Paginate>
 </article>
 
 
@@ -40,9 +41,18 @@ export default {
 		pageSize: 5
     }
   },
+
   created(){
 	this.$emit('open-page',this.PageTitle)
-	
-  }
+  },
+//   watch: {
+//     $route(to, from) {
+// 		console.log('to',to)
+// 		console.log('from',from)
+
+//       this.Posts = this.getData(PostsData,5, this.$route.params.id)
+//     }
+//   }
+
 };
 </script>

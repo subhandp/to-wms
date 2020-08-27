@@ -8,13 +8,7 @@
 
 <script>
 export default {
-  name: "Home",
-  data(){
-
-  },
-  methods:{
-
-  }
+  name: "Home"
 
 };
 </script>

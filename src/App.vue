@@ -21,7 +21,7 @@
 		
 				</div>
 		
-				<LayoutSidebar></LayoutSidebar>
+				<LayoutSidebar ></LayoutSidebar>
 
 			</div>
 		</div>

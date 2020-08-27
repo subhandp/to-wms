@@ -5,30 +5,27 @@
                         
                         <div class="w-1/2 sm:px-2 w-" v-bind:key="album.id" v-for="album in albums">
 
-                         <div class="max-w-sm rounded overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
+
+                          <router-link :to="{ name: 'albumdetail', params: {id: album.id}}" >
+                            <div class="max-w-sm rounded overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
                                 <img class="w-full" :src="image" alt="image empty">
                                 <div class="px-6 py-4">
                                   <p class="sm:block  text-base text-center ">
                                     {{album.title}}
                                   </p>
 
-           
-                                        <div class="inline-flex">
-                                              <button   class="bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r">
-                                              readmore..
-                                              </button>
-                                          </div>
-
-
-                                     
                                 </div>
 
                               </div>
+                              
+                          </router-link>
+
+                         
 
                           <br>
 
                         </div>
-                        <Paginate :data="resource" url="albums/page" :pageSize="pageSize"></Paginate>
+                        <Paginate :data="resource" url="albumspage" :pageSize="pageSize"></Paginate>
                     </div>
                     
   </div>

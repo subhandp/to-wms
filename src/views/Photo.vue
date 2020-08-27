@@ -5,7 +5,8 @@
                         
                         <div class="w-1/2 sm:px-2 w-" v-bind:key="photo.id" v-for="photo in photos">
 
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+						<router-link :to="{ name: 'photodetail', params: {id: photo.id}}" > 
+                      <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <img class="w-full" :src="image" alt="Sunset in the mountains">
                             <div class="px-6 py-4">
                               <div class="font-bold text-xl mb-2">{{photo.title}}</div>
@@ -14,13 +15,15 @@
                               </p>
                             </div>
                           </div>
+            </router-link>
+                        
 
                           <br>
 
                         </div>
                        
                     </div>
-                     <Paginate :data="resource" url="photos/page" :pageSize="pageSize"></Paginate>
+                     <Paginate :data="resource" url="photospage" :pageSize="pageSize"></Paginate>
   </div>
 </template>
 

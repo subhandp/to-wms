@@ -9,12 +9,6 @@ My Private Blog
 
 <script>
 export default {
-  name: "LayoutFooter",
-  data(){
-
-  },
-  methods:{
-
-  }
+  name: "LayoutFooter"
 };
 </script>

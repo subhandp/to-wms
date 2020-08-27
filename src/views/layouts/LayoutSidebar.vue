@@ -6,9 +6,10 @@
 
 						<div class="p-4">
 							<ul class="list-reset leading-normal">
-								<li><a href="/posts" class="text-gray-darkest text-sm">Posts</a></li>
-								<li><a href="/photos" class="text-gray-darkest text-sm">Photos</a></li>
-								<li><a href="/albums" class="text-gray-darkest text-sm">Albums</a></li>
+								
+								<li><router-link to="/posts" class="text-gray-darkest text-sm">Posts</router-link> </li>
+								<li><router-link to="/photos" class="text-gray-darkest text-sm">Photos</router-link> </li>
+								<li><router-link to="/albums" class="text-gray-darkest text-sm">Albums</router-link> </li>
 							</ul>
 						</div>
 					</aside>
@@ -19,12 +20,6 @@
 
 <script>
 export default {
-  name: "LayoutSidebar",
-  data(){
-
-  },
-  methods:{
-
-  }
+  name: "LayoutSidebar"
 };
 </script>

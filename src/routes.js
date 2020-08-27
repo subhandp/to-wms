@@ -1,41 +1,68 @@
 // import User from "@/components/User"
 // import Home from "@/components/Home";
-import Posts from './views/Page.vue'
-import Photos from './views/Photo.vue'
-import Home from './views/Home.vue'
-import Album from './views/Album.vue'
+// // import Posts from './views/Page.vue'
+// import Photos from './views/Photo.vue'
+// import Home from './views/Home.vue'
+// import Album from './views/Album.vue'
+// import Paginate from './components/Paginate'
 
 
 
-
-const routes = [
-    { path: "/", component: Home },
+const routes = [{
+        path: "/dashboard",
+        name: 'home',
+        component: () =>
+            import ( /* webpackChunkName: "posts" */ './views/Home.vue')
+    },
     {
         path: "/posts",
-        component: Posts,
+        component: () =>
+            import ( /* webpackChunkName: "posts" */ './views/Page.vue'),
         name: "postsindex",
+        meta: { requiresAuth: true },
         children: [{
             path: "/posts/page/:id",
-            component: Posts
+            name: 'postspage'
         }]
+    },
+    {
+        path: "/posts/:id",
+        component: () =>
+            import ( /* webpackChunkName: "posts" */ './views/PageDetail.vue'),
+        name: "postdetail",
+        meta: { requiresAuth: true }
     },
     {
         path: "/photos",
-        component: Photos,
+        component: () =>
+            import ( /* webpackChunkName: "photos" */ './views/Photo.vue'),
         name: "photosindex",
         children: [{
             path: "/photos/page/:id",
-            component: Photos
+            name: 'photospage'
         }]
     },
     {
+        path: "/photos/:id",
+        component: () =>
+            import ( /* webpackChunkName: "photos" */ './views/PhotoDetail.vue'),
+        name: "photodetail"
+    },
+    {
         path: "/albums",
-        component: Album,
+        component: () =>
+            import ( /* webpackChunkName: "albums" */ './views/Album.vue'),
         name: "albumsindex",
         children: [{
             path: "/albums/page/:id",
-            component: Album
+            name: 'albumspage'
         }]
+    },
+    {
+        path: "/albums/:id",
+        component: () =>
+            import ( /* webpackChunkName: "albums" */ './views/AlbumDetail.vue'),
+        name: "albumdetail"
     }
 
 ];
