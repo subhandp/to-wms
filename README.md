@@ -1,4 +1,4 @@
-# vue-tailwind-component
+# vue-router-lazy-load
 
 ## Project setup
 ```
