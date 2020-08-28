@@ -6,6 +6,8 @@ import './filters'
 import VueRouter from "vue-router";
 import routes from "./routes";
 
+import postsData from '../src/assets/data/posts'
+
 Vue.use(VueRouter);
 Vue.config.productionTip = false
 
@@ -26,6 +28,9 @@ Vue.mixin({
         },
         getDataById(data, id) {
             return data.filter((obj) => obj.id == id);
+        },
+        widgetPopular() {
+            return { dataset: postsData, datasetName: 'Posts', routeName: 'postspage' }
         }
     }
 });
@@ -46,7 +51,7 @@ router.beforeEach((to, from, next) => {
             next();
         } else {
             alert("sorry, you have Login first");
-            next("/dashboard");
+            next({ name: 'home' });
         }
     } else {
         next();

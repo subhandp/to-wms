@@ -20,9 +20,12 @@
 					<router-view></router-view>
 		
 				</div>
-		
+		<div class="w-full md:w-64">
 				<LayoutSidebar ></LayoutSidebar>
 
+				<WidgetPopular ></WidgetPopular>
+
+		</div>
 			</div>
 		</div>
 
@@ -39,13 +42,15 @@ import LayoutFooter from './views/layouts/LayoutFooter'
 import LayoutHeader from './views/layouts/LayoutHeader'
 import LayoutNavbar from './views/layouts/LayoutNavbar'
 import LayoutSidebar from './views/layouts/LayoutSidebar'
+import WidgetPopular from './components/WidgetPopular'
+
 
 
 
 export default {
   name: 'App',
   components:{
-    LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar
+    LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar,WidgetPopular
   },
      computed: {
    

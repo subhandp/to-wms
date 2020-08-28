@@ -18,6 +18,7 @@
 	</div>
 	<!-- <router-view :data="resource" url="posts/page" :pageSize="pageSize"></router-view> -->
 	<Paginate :data="resource" url="postspage" :pageSize="pageSize" ></Paginate>
+	
 </article>
 
 
@@ -44,6 +45,7 @@ export default {
 
   created(){
 	this.$emit('open-page',this.PageTitle)
+	this.setWidgetPopular(PostsData,'post','postspage')
   },
 //   watch: {
 //     $route(to, from) {

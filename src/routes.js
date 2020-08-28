@@ -19,7 +19,7 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "posts" */ './views/Page.vue'),
         name: "postsindex",
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: false },
         children: [{
             path: "/posts/page/:id",
             name: 'postspage'
@@ -30,7 +30,7 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "posts" */ './views/PageDetail.vue'),
         name: "postdetail",
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: false }
     },
     {
         path: "/photos",
