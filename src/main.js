@@ -8,6 +8,8 @@ import routes from "./routes";
 
 import postsData from '../src/assets/data/posts'
 
+import store from "./store";
+
 Vue.use(VueRouter);
 Vue.config.productionTip = false
 
@@ -63,6 +65,7 @@ router.beforeEach((to, from, next) => {
 
 
 new Vue({
+    store,
     router,
     render: h => h(App),
 }).$mount('#app')

@@ -9,60 +9,16 @@
 
 
 const routes = [{
-        path: "/dashboard",
-        name: 'home',
+        path: "/productin",
+        name: 'productin',
         component: () =>
-            import ( /* webpackChunkName: "posts" */ './views/Home.vue')
+            import ( /* webpackChunkName: "productin" */ './views/ProductIn.vue')
     },
     {
-        path: "/posts",
+        path: "/product",
+        name: 'product',
         component: () =>
-            import ( /* webpackChunkName: "posts" */ './views/Page.vue'),
-        name: "postsindex",
-        meta: { requiresAuth: false },
-        children: [{
-            path: "/posts/page/:id",
-            name: 'postspage'
-        }]
-    },
-    {
-        path: "/posts/:id",
-        component: () =>
-            import ( /* webpackChunkName: "posts" */ './views/PageDetail.vue'),
-        name: "postdetail",
-        meta: { requiresAuth: false }
-    },
-    {
-        path: "/photos",
-        component: () =>
-            import ( /* webpackChunkName: "photos" */ './views/Photo.vue'),
-        name: "photosindex",
-        children: [{
-            path: "/photos/page/:id",
-            name: 'photospage'
-        }]
-    },
-    {
-        path: "/photos/:id",
-        component: () =>
-            import ( /* webpackChunkName: "photos" */ './views/PhotoDetail.vue'),
-        name: "photodetail"
-    },
-    {
-        path: "/albums",
-        component: () =>
-            import ( /* webpackChunkName: "albums" */ './views/Album.vue'),
-        name: "albumsindex",
-        children: [{
-            path: "/albums/page/:id",
-            name: 'albumspage'
-        }]
-    },
-    {
-        path: "/albums/:id",
-        component: () =>
-            import ( /* webpackChunkName: "albums" */ './views/AlbumDetail.vue'),
-        name: "albumdetail"
+            import ( /* webpackChunkName: "productin" */ './views/Product.vue')
     }
 
 ];

@@ -1,70 +1,63 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-gray-100 font-family-karla flex">
 
-		<LayoutHeader></LayoutHeader>
 		
-		<LayoutNavbar></LayoutNavbar>
-	
-		<div class="w-full bg-white">
-			<div class="text-center px-6 py-12 mb-6 bg-blue-100 border-b">
-				<h1 class=" text-xl md:text-4xl pb-4 " >{{title}}</h1>
-				<p class="leading-loose text-gray-dark">
-					Blog
-				</p>
-			</div>
+    <Sidebar/>
 
+    <div class="w-full flex flex-col h-screen overflow-y-hidden">
+        <!-- Desktop Header -->
+      
+      <Header/>
 
-			<div class="container max-w-4xl mx-auto md:flex items-start py-8 px-12 md:px-0">
-				<div class="w-full md:pr-12 mb-12">
-					
-					<router-view></router-view>
-		
-				</div>
-		<div class="w-full md:w-64">
-				<LayoutSidebar ></LayoutSidebar>
-
-				<WidgetPopular ></WidgetPopular>
-
-		</div>
-			</div>
-		</div>
-
-  <LayoutFooter></LayoutFooter>
-	
-
+        
+        <div class="w-full overflow-x-hidden border-t flex flex-col">
+            <main class="w-full flex-grow p-6">
+                <h1 class="text-3xl text-black pb-6">Dashboard</h1>
+                <div class="w-full mt-12">
+                   
+                    <div class="bg-white overflow-auto">
+                                                                                                                            
+                            <router-view></router-view>
+                            <!-- <Table :items="products.items" :columns="products.columns"></Table> -->
+                    </div>
+                </div>
+            </main>
+    
+            <footer class="w-full bg-white text-right p-4">
+               SIMPLE - WMS
+            </footer>
+        </div>
+        
+    </div>
 
   </div>
 </template>
 
 <script>
 
-import LayoutFooter from './views/layouts/LayoutFooter'
-import LayoutHeader from './views/layouts/LayoutHeader'
-import LayoutNavbar from './views/layouts/LayoutNavbar'
-import LayoutSidebar from './views/layouts/LayoutSidebar'
-import WidgetPopular from './components/WidgetPopular'
+import Sidebar from './views/layouts/Sidebar'
+import Header from './views/layouts/Header'
+// import BarChart from './components/BarChart'
+// import Table from './components/Table'
 
-
-
+// import { mapState,mapMutations,mapActions } from 'vuex'
 
 export default {
   name: 'App',
   components:{
-    LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar,WidgetPopular
+    // LayoutFooter,LayoutHeader,LayoutNavbar,LayoutSidebar,WidgetPopular
+    Sidebar,Header
   },
-     computed: {
-   
-        },
-        watch: {
-
-        },
-        methods: {
-        //   setTitle(pageTitle){
-        //     this.title = pageTitle
-        //   }
-        },
-         created() {
-        },
+//      computed: {
+//     ...mapState(['logoutMenuOpen', 'products']),
+//   },
+//     methods: {
+//     ...mapMutations(['openCloseLogoutMenu']),
+//     ...mapActions(["getProducts"]),
+//     },
+//     created() {
+//         this.getProducts()
+//     },
   data(){
     return{
       title : 'Dashboard'
@@ -78,4 +71,12 @@ export default {
 </style>
 
 <style scoped>
+.font-family-karla { font-family: karla; }
+        .bg-sidebar { background: #3d68ff; }
+        .cta-btn { color: #3d68ff; }
+        .upgrade-btn { background: #1947ee; }
+        .upgrade-btn:hover { background: #0038fd; }
+        .active-nav-link { background: #1947ee; }
+        .nav-item:hover { background: #1947ee; }
+        .account-link:hover { background: #3d68ff; }
 </style>
