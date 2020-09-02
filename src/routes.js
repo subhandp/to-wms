@@ -12,7 +12,13 @@ const routes = [{
         path: "/productin",
         name: 'productin',
         component: () =>
-            import ( /* webpackChunkName: "productin" */ './views/ProductIn.vue')
+            import ( /* webpackChunkName: "productin" */ './views/ProductIn.vue'),
+        children: [{
+            path: "/productin/create",
+            name: 'product-in-create',
+            component: () =>
+                import ( /* webpackChunkName: "productcrud" */ './views/productCrud'),
+        }]
     },
     {
         path: "/product",

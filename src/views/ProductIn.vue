@@ -1,10 +1,12 @@
 <template>
     <div class="bg-white overflow-auto">
-
+       <router-view></router-view>
       <p class="text-xl pb-3 flex items-center">
                         <i class="fas fa-list mr-3"></i> Latest Products In
                     </p>     
+                     <router-link :to="{name: 'product-in-create'}" >  <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded">Add Product In</button>  </router-link><br>
                 <table class="min-w-full bg-white">
+                    
                 <thead class="bg-gray-800 text-white">
                     <tr>
                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm" v-for="(column, index) in columns" :key="index"> {{column}}</th>

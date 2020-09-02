@@ -9,6 +9,9 @@ import routes from "./routes";
 import postsData from '../src/assets/data/posts'
 
 import store from "./store";
+import vSelect from "vue-select";
+
+Vue.component("v-select", vSelect);
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false
