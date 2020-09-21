@@ -8,8 +8,9 @@ import routes from "./routes";
 
 import postsData from '../src/assets/data/posts'
 
-import store from "./store";
+import store from "./store/index";
 import vSelect from "vue-select";
+import vuetify from './plugins/vuetify';
 
 Vue.component("v-select", vSelect);
 
@@ -18,9 +19,6 @@ Vue.config.productionTip = false
 
 Vue.mixin({
     methods: {
-        hello: function() {
-            console.log('hello from mixin!')
-        },
         paginate(array, page_size, page_number) {
             return array.slice((page_number - 1) * page_size, page_number * page_size);
         },
@@ -41,9 +39,6 @@ Vue.mixin({
 });
 
 
-const auth = {
-    userlogin: false,
-};
 
 const router = new VueRouter({
     routes,
@@ -51,18 +46,25 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (auth.login) {
-            next();
+    
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        
+        if (!store.getters['users/isLogIn']) {
+            console.log("sdh tdk LOGIN LOH")
+            store.dispatch('snackbar/setSnackbar', {color: 'error', text: "Please Login First, before access page."});
+            next({
+                path: '/login',
+                params: { nextUrl: to.fullPath }
+            })
         } else {
-            alert("sorry, you have Login first");
-            next({ name: 'home' });
+            console.log("MASIH LOGIN LOH")
+            next()
         }
-    } else {
-        next();
     }
-});
-
+    else {
+        next()
+    }
+})
 
 
 
@@ -70,5 +72,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
     store,
     router,
-    render: h => h(App),
+    vuetify,
+    render: h => h(App)
 }).$mount('#app')

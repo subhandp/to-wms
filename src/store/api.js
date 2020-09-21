@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const port = 3000;
+// const port = 3000;
 
 const instance = axios.create({
-    baseURL: `http://localhost:${port}/api/v1/`,
+    // https://simple-wms.herokuapp.com/
+    // baseURL: `http://localhost:${port}/api/v1/`,
+    baseURL: `https://simple-wms.herokuapp.com/api/v1/`,
+
     headers: {
         "Content-Type": "application/json",
     },
