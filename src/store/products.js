@@ -11,7 +11,7 @@ export default{
         async getAllProducts({ commit}) {
             try {
                 const { data } = await Api.get("product");
-
+                console.log("ALL PRODUCTS", data)
                 commit("SET_PRODUCTS", { data });
                 commit("SET_TOTAL_PRODUCTS", data.data.totalItems);
 
